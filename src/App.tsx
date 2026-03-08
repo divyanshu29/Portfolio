@@ -1,0 +1,424 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Linkedin, 
+  Mail, 
+  MapPin, 
+  ExternalLink, 
+  ChevronDown, 
+  ChevronUp, 
+  Award, 
+  Briefcase, 
+  Code, 
+  GraduationCap, 
+  Download,
+  Trophy,
+  Zap,
+  Menu,
+  X,
+  Github,
+  ArrowUpRight
+} from 'lucide-react';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import { AnimatedBackground } from './components/AnimatedBackground';
+import { RESUME_DATA } from './constants';
+
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+const Splash = ({ onComplete }: { onComplete: () => void }) => {
+  useEffect(() => {
+    const timer = setTimeout(onComplete, 1800);
+    return () => clearTimeout(timer);
+  }, [onComplete]);
+
+  return (
+    <motion.div 
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+    >
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="text-4xl md:text-6xl font-black tracking-tighter text-white text-center uppercase"
+      >
+        BACKEND<span className="text-emerald-500">DEV</span><br />
+        PORT<span className="text-emerald-500">FOLIO</span>
+      </motion.div>
+      <motion.div 
+        className="mt-4 text-xs font-mono tracking-[0.3em] text-white/40 uppercase"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+      >
+        Divyanshu Sharma © 2026
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const SectionHeader = ({ title, subtitle }: { title: string, subtitle?: string }) => (
+  <div className="mb-16">
+    <motion.div 
+      initial={{ width: 0 }}
+      whileInView={{ width: "100%" }}
+      viewport={{ once: true }}
+      className="h-px bg-white/10 mb-8"
+    />
+    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white uppercase leading-none">
+        {title}
+      </h2>
+      {subtitle && (
+        <p className="text-emerald-500 font-mono text-sm uppercase tracking-widest mb-2">
+          {subtitle}
+        </p>
+      )}
+    </div>
+  </div>
+);
+
+export default function App() {
+  const [loading, setLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState('hero');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['hero', 'experience', 'projects', 'skills', 'education'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top >= -200 && rect.top <= 400;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-black text-white selection:bg-emerald-500/30 font-sans">
+      <AnimatePresence>
+        {loading && <Splash onComplete={() => setLoading(false)} />}
+      </AnimatePresence>
+
+      {!loading && (
+        <>
+          <AnimatedBackground />
+          
+          {/* Minimal Navigation */}
+          <nav className="fixed top-0 left-0 w-full z-40 bg-black/80 backdrop-blur-md border-b border-white/5">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12 h-24 flex items-center justify-between">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                onClick={() => scrollTo('hero')}
+                className="text-xl font-black tracking-tighter cursor-pointer"
+              >
+                DIVYANSHU<span className="text-emerald-500">.</span>
+              </motion.div>
+
+              <div className="hidden md:flex items-center gap-12">
+                {['Experience', 'Projects', 'Skills', 'Education'].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollTo(item.toLowerCase())}
+                    className={cn(
+                      "text-[11px] font-bold uppercase tracking-[0.2em] transition-colors hover:text-emerald-400",
+                      activeSection === item.toLowerCase() ? "text-emerald-400" : "text-white/40"
+                    )}
+                  >
+                    {item}
+                  </button>
+                ))}
+                <a 
+                  href={`mailto:${RESUME_DATA.basics.email}`}
+                  className="text-[11px] font-bold uppercase tracking-[0.2em] px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all"
+                >
+                  Contact
+                </a>
+              </div>
+
+              <button className="md:hidden p-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X /> : <Menu />}
+              </button>
+            </div>
+          </nav>
+
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div 
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="fixed inset-0 z-50 bg-black flex flex-col justify-center px-12 md:hidden"
+              >
+                <button className="absolute top-8 right-8 p-4" onClick={() => setIsMenuOpen(false)}>
+                  <X className="w-8 h-8" />
+                </button>
+                <div className="flex flex-col gap-8">
+                  {['Experience', 'Projects', 'Skills', 'Education'].map((item) => (
+                    <button
+                      key={item}
+                      onClick={() => scrollTo(item.toLowerCase())}
+                      className="text-5xl font-black text-left uppercase tracking-tighter"
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <main className="max-w-[1400px] mx-auto px-6 md:px-12 pt-48 pb-32">
+            {/* Updot-Inspired Hero */}
+            <section id="hero" className="min-h-[70vh] flex flex-col justify-center mb-48">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="h-px w-12 bg-emerald-500" />
+                  <span className="text-emerald-500 font-mono text-xs uppercase tracking-[0.3em]">
+                    BACKEND ENGINEER & AI EXPLORER
+                  </span>
+                </div>
+                
+                <h1 className="text-7xl md:text-[10rem] font-black tracking-tighter leading-[0.85] uppercase mb-12">
+                  Building <br />
+                  <span className="text-white/20">Scalable</span> <br />
+                  Systems<span className="text-emerald-500">.</span>
+                </h1>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+                  <div className="md:col-span-7">
+                    <p className="text-2xl md:text-3xl text-white/60 leading-tight tracking-tight">
+                      {RESUME_DATA.basics.summary}
+                    </p>
+                  </div>
+                  <div className="md:col-span-5 flex flex-col gap-6">
+                    <div className="flex gap-4">
+                      <button 
+                        className="flex-1 px-8 py-5 bg-white text-black font-black uppercase text-xs tracking-widest cursor-default"
+                      >
+                        Resume
+                      </button>
+                      <a 
+                        href="https://drive.google.com/file/d/16zVILS706UNq3fRMQ3RNywgwvXxZitcT/view?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-5 border border-white/20 hover:bg-white/5 transition-colors"
+                      >
+                        <Download className="w-5 h-5" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </section>
+
+            {/* Experience Section - Reverted to Standard Layout */}
+            <section id="experience" className="mb-48 scroll-mt-32">
+              <SectionHeader title="Experience" subtitle="Professional Journey" />
+              <div className="space-y-12">
+                {RESUME_DATA.experience.map((exp, idx) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="relative pl-8 border-l border-white/10 hover:border-emerald-500 transition-colors group"
+                  >
+                    <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                      <div>
+                        <h3 className="text-2xl font-bold text-white">{exp.role}</h3>
+                        <p className="text-emerald-500 font-medium">{exp.company}</p>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-sm font-mono text-white/40">{exp.dates}</span>
+                        {exp.client && (
+                          <p className="text-[10px] font-bold text-white/20 uppercase tracking-widest mt-1">Client: {exp.client}</p>
+                        )}
+                      </div>
+                    </div>
+                    <ul className="space-y-3">
+                      {exp.bullets.map((bullet, bIdx) => (
+                        <li key={bIdx} className="text-white/60 leading-relaxed flex gap-3">
+                          <span className="text-emerald-500 mt-1.5">•</span>
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+
+            {/* Projects - Standard Card Grid */}
+            <section id="projects" className="mb-48 scroll-mt-32">
+              <SectionHeader title="Projects" subtitle="Personal Ventures" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {RESUME_DATA.projects.map((project, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/50 transition-all group"
+                  >
+                    <div className="flex justify-between items-start mb-6">
+                      <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-500">
+                        <Code className="w-6 h-6" />
+                      </div>
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-emerald-500 transition-colors">
+                        <ArrowUpRight className="w-6 h-6" />
+                      </a>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
+                    <p className="text-white/50 mb-6 line-clamp-2">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.stack.map(tech => (
+                        <span key={tech} className="text-[10px] font-bold uppercase tracking-widest text-emerald-500/70 bg-emerald-500/5 px-3 py-1 rounded-full border border-emerald-500/10">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+
+            {/* Skills & Certs - Standard Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-48">
+              <section id="skills" className="scroll-mt-32">
+                <SectionHeader title="Skills" subtitle="Technical Stack" />
+                <div className="space-y-8">
+                  {Object.entries(RESUME_DATA.skills).map(([category, skills]) => (
+                    <div key={category}>
+                      <h4 className="text-xs font-bold text-emerald-500 uppercase tracking-[0.2em] mb-4">{category}</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {skills.map(skill => (
+                          <span key={skill} className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-white/70 hover:text-white hover:border-emerald-500/30 transition-all">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section id="certifications" className="scroll-mt-32">
+                <SectionHeader title="Certifications" subtitle="Verified" />
+                <div className="space-y-4">
+                  {RESUME_DATA.certifications.map((cert, idx) => (
+                    <motion.a 
+                      key={idx}
+                      href={cert.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all group"
+                    >
+                      <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-500">
+                        <Award className="w-5 h-5" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-white group-hover:text-emerald-400 transition-colors">{cert.name}</p>
+                      </div>
+                      <ArrowUpRight className="w-4 h-4 text-white/20 group-hover:text-emerald-400 transition-colors" />
+                    </motion.a>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            {/* Education Section - Standard */}
+            <section id="education" className="mb-48 scroll-mt-32">
+              <SectionHeader title="Education" subtitle="Academic Background" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {RESUME_DATA.education.map((edu, idx) => (
+                  <div key={idx} className="p-8 rounded-2xl bg-white/[0.03] border border-white/10">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-500">
+                        <GraduationCap className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-white">{edu.institution}</h3>
+                        <p className="text-emerald-500 text-sm">{edu.degree}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Footer - High Impact */}
+            <footer className="pt-32 border-t border-white/10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-20 mb-32">
+                <div>
+                  <h2 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-none mb-12">
+                    Let's <br />
+                    <span className="text-emerald-500">Connect.</span>
+                  </h2>
+                  <div className="flex flex-col gap-6">
+                    <a href={`mailto:${RESUME_DATA.basics.email}`} className="flex items-center gap-4 text-2xl font-bold hover:text-emerald-500 transition-colors group">
+                      <div className="p-3 rounded-xl bg-white/5 group-hover:bg-emerald-500/10 transition-colors">
+                        <Mail className="w-6 h-6" />
+                      </div>
+                      {RESUME_DATA.basics.email}
+                    </a>
+                    <a href={RESUME_DATA.basics.links[0].url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-2xl font-bold hover:text-emerald-500 transition-colors group">
+                      <div className="p-3 rounded-xl bg-white/5 group-hover:bg-emerald-500/10 transition-colors">
+                        <Linkedin className="w-6 h-6" />
+                      </div>
+                      LinkedIn Profile
+                    </a>
+                    <a href="https://github.com/divyanshu29" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-2xl font-bold hover:text-emerald-500 transition-colors group">
+                      <div className="p-3 rounded-xl bg-white/5 group-hover:bg-emerald-500/10 transition-colors">
+                        <Github className="w-6 h-6" />
+                      </div>
+                      GitHub Profile
+                    </a>
+                  </div>
+                </div>
+                <div className="flex flex-col justify-end">
+                  <p className="text-2xl italic text-white/40 leading-tight font-serif mb-8">
+                    "The best way to predict the future is to build it with AI. I am constantly learning, building, and evolving in the world of LLMs to create systems that don't just process data, but understand it."
+                  </p>
+                  <div className="text-[10px] font-mono tracking-[0.3em] text-white/20 uppercase">
+                    Divyanshu Sharma © 2026 / All Rights Reserved
+                  </div>
+                </div>
+              </div>
+            </footer>
+          </main>
+        </>
+      )}
+    </div>
+  );
+}
