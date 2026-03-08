@@ -222,18 +222,14 @@ export default function App() {
                   </div>
                   <div className="md:col-span-5 flex flex-col gap-6">
                     <div className="flex gap-4">
-                      <button 
-                        className="flex-1 px-8 py-5 bg-white text-black font-black uppercase text-xs tracking-widest cursor-default"
-                      >
-                        Resume
-                      </button>
                       <a 
                         href="https://drive.google.com/file/d/16zVILS706UNq3fRMQ3RNywgwvXxZitcT/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-5 border border-white/20 hover:bg-white/5 transition-colors"
+                        className="flex-1 px-8 py-5 bg-emerald-500 text-black font-black uppercase text-xs tracking-widest hover:bg-white transition-all text-center flex items-center justify-center gap-3 group"
                       >
-                        <Download className="w-5 h-5" />
+                        <Download className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                        Download Resume
                       </a>
                     </div>
                   </div>
@@ -266,7 +262,7 @@ export default function App() {
                         )}
                       </div>
                     </div>
-                    <ul className="space-y-3">
+                    <ul className="space-y-3 mb-6">
                       {exp.bullets.map((bullet, bIdx) => (
                         <li key={bIdx} className="text-white/60 leading-relaxed flex gap-3">
                           <span className="text-emerald-500 mt-1.5">•</span>
@@ -274,6 +270,15 @@ export default function App() {
                         </li>
                       ))}
                     </ul>
+                    {exp.stack && (
+                      <div className="flex flex-wrap gap-2">
+                        {exp.stack.map(tech => (
+                          <span key={tech} className="text-[9px] font-bold uppercase tracking-widest text-emerald-400/80 bg-emerald-500/5 border border-emerald-500/20 px-2 py-1 rounded-sm">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
                 ))}
               </div>

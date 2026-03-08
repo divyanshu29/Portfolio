@@ -17,7 +17,14 @@ export const RESUME_DATA = {
       "dates": "March 2025 - Present",
       "location": "India",
       "client": "Citi Bank",
-      "bullets": ["Developing and maintaining backend services for ADR systems using high-performance Java code."]
+      "bullets": [
+        "Engineered and deployed high-performance RESTful APIs for core banking microservices using Java and Spring Boot, implementing complex business logic and maker-checker security workflows.",
+        "Optimized complex SQL queries and leveraged Spring Data JPA to reduce database execution time by 30%, significantly enhancing transactional throughput and data management efficiency.",
+        "Integrated Feign Client and Apache Kafka to establish high-throughput asynchronous inter-service communication, ensuring reliable and detailed audit logging across distributed systems.",
+        "Leveraged Citi Velocity and Tekton CI/CD for automated build pipelines, managing continuous deployment and ensuring code quality through SonarQube static analysis.",
+        "Implemented secure secret management using HashiCorp Vault for sensitive banking credentials and configurations."
+      ],
+      "stack": ["Java", "Spring Boot", "Kafka", "SQL", "JUnit", "Mockito", "HashiCorp Vault", "Citi Velocity", "SonarQube"]
     },
     {
       "company": "Altimetrik",
@@ -26,12 +33,13 @@ export const RESUME_DATA = {
       "location": "Chennai, Tamil Nadu, India",
       "client": "National Payment Co-operation of India (NPCI)",
       "bullets": [
-        "Developed and implemented robust, scalable APIs using Java and Spring Boot for national payment infrastructure",
-        "Wrote efficient code following Spring Framework best practices to enhance system functionality",
-        "Provided real-time production support for high-availability systems, resolving critical issues promptly",
-        "Created comprehensive unit and integration testing suites to ensure code reliability and high test coverage",
-        "Worked with event-driven architectures and distributed data systems to process large-scale transaction data"
-      ]
+        "Developed high-performance, thread-safe backend APIs with XML-based regex validation, achieving ultra-low latency of 5-6ms and boosting overall system throughput by 8%.",
+        "Architected and implemented a Kafka-based asynchronous acknowledgment flow, significantly enhancing system scalability and preventing API request blockage under heavy traffic loads.",
+        "Designed and implemented interactive Power BI dashboards to visualize key performance indicators (KPIs), enabling real-time operational analysis and data-driven decision-making.",
+        "Provided technical leadership in setting up and documenting the Mock test environment, mentoring cross-functional teams and IT help desk staff to streamline testing processes.",
+        "Managed large-scale transaction data using Foundation DB and optimized SQL queries for high-availability payment infrastructure."
+      ],
+      "stack": ["Java", "Spring Boot", "Kafka", "SQL", "Foundation DB", "XML", "Power BI"]
     },
     {
       "company": "AnnexLogics System Pvt. Ltd.",
@@ -39,10 +47,12 @@ export const RESUME_DATA = {
       "dates": "March 2023 - October 2023",
       "location": "Jaipur, Rajasthan, India",
       "bullets": [
-        "Translated business requirements into technical specifications for development teams",
-        "Created functional documentation and use cases to guide the software development lifecycle",
-        "Maintained clear communication between stakeholders and engineering teams"
-      ]
+        "Analyzed large volumes of healthcare adverse event data from multiple channels, ensuring 100% regulatory compliance and improving reporting timeliness by 20%.",
+        "Streamlined case triaging processes using advanced data handling techniques within Salesforce Marketing Cloud (SFMC), reducing report backlog by 15%.",
+        "Utilized Datorama and Power BI for healthcare-related analytics, enhancing workflow efficiency and providing actionable business insights.",
+        "Managed project documentation and stakeholder communication using Notion and Jira to ensure seamless product delivery."
+      ],
+      "stack": ["Salesforce Marketing Cloud", "Datorama", "Power BI", "Notion", "Documentation"]
     },
     {
       "company": "ALLEN Career Institute Pvt. Ltd.",
@@ -50,10 +60,11 @@ export const RESUME_DATA = {
       "dates": "September 2022 - February 2023",
       "location": "Kota, Rajasthan, India",
       "bullets": [
-        "Implemented Salesforce solutions to drive data-driven organizational improvements",
-        "Analyzed requirement documents to align Salesforce configurations with business goals",
-        "Used data analytics to bridge the gap between business needs and technical implementations"
-      ]
+        "Implemented Salesforce solutions to drive data-driven organizational improvements and aligned configurations with business goals.",
+        "Analyzed requirement documents to bridge the gap between business needs and technical implementations.",
+        "Assisted in data migration and cleansing activities to maintain CRM data integrity."
+      ],
+      "stack": ["Salesforce", "Data Analytics", "CRM"]
     },
     {
       "company": "Axestrack Software Solutions Pvt. Ltd",
@@ -61,17 +72,19 @@ export const RESUME_DATA = {
       "dates": "December 2021 - March 2022",
       "location": "Jaipur, Rajasthan, India",
       "bullets": [
-        "Tracked and maintained data-driven decision-making tasks for product development",
-        "Researched market products to identify areas for technical and functional improvement",
-        "Provided strategic recommendations based on product data insights"
-      ]
+        "Tracked and maintained data-driven decision-making tasks for product development and researched market trends.",
+        "Identified areas for technical and functional improvement through competitive product analysis.",
+        "Provided strategic recommendations based on product data insights to the engineering team."
+      ],
+      "stack": ["Product Analysis", "Market Research", "Data Insights"]
     }
   ],
   "skills": {
-    "Backend Development": ["Java (Core & Advanced)", "Spring Boot", "Spring Framework", "Microservices", "REST APIs"],
-    "AI & Data": ["Agentic AI (Learning)", "LLM & GenAI Concepts", "Kafka", "Snowflake (Workshops)", "SQL"],
-    "Salesforce": ["Salesforce Datorama", "Salesforce Marketing Cloud", "Datorama Admin"],
-    "Tools": ["Git", "Docker", "Jira"]
+    "Backend Development": ["Java (Core & Advanced)", "Spring Boot", "Spring Framework", "Microservices", "REST APIs", "JUnit", "Mockito"],
+    "Messaging & Data": ["Apache Kafka", "SQL", "Foundation DB", "Spring Data JPA", "XML", "HashiCorp Vault"],
+    "AI & Cloud": ["Agentic AI (Learning)", "LLM & GenAI Concepts", "Snowflake", "Citi Velocity", "Tekton", "SonarQube"],
+    "Salesforce & Analytics": ["Salesforce Marketing Cloud", "Salesforce Datorama", "Power BI", "Datorama Admin"],
+    "Tools & Workflow": ["Git", "Docker", "Jira", "Notion", "Postman"]
   },
   "certifications": [
     { "name": "Oracle Certified Java Programmer", "url": "https://www.linkedin.com/in/divyanshu-29/details/certifications/" },
