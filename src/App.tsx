@@ -34,35 +34,92 @@ function cn(...inputs: ClassValue[]) {
 }
 
 const Splash = ({ onComplete }: { onComplete: () => void }) => {
+  const [progress, setProgress] = useState(0);
+
   useEffect(() => {
-    const timer = setTimeout(onComplete, 1800);
-    return () => clearTimeout(timer);
+    const interval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          return 100;
+        }
+        return prev + 2;
+      });
+    }, 30);
+
+    const timer = setTimeout(onComplete, 2200);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
+    };
   }, [onComplete]);
 
   return (
     <motion.div 
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black overflow-hidden"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
     >
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="text-4xl md:text-6xl font-black tracking-tighter text-white text-center uppercase"
-      >
-        BACKEND<span className="text-emerald-500">DEV</span><br />
-        PORT<span className="text-emerald-500">FOLIO</span>
-      </motion.div>
-      <motion.div 
-        className="mt-4 text-xs font-mono tracking-[0.3em] text-white/40 uppercase"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-      >
-        Divyanshu Sharma © 2026
-      </motion.div>
+      {/* Background Grid Effect */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
+      </div>
+
+      <div className="relative z-10 flex flex-col items-center">
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-5xl md:text-7xl font-black tracking-tighter text-white text-center uppercase leading-none"
+        >
+          DIVYANSHU<span className="text-emerald-500">.</span><br />
+          <span className="text-white/20">SHARMA</span>
+        </motion.div>
+
+        <motion.div 
+          className="mt-8 flex flex-col items-center gap-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          <div className="h-[2px] w-48 bg-white/10 relative overflow-hidden rounded-full">
+            <motion.div 
+              className="absolute inset-y-0 left-0 bg-emerald-500"
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ ease: "linear" }}
+            />
+          </div>
+          
+          <div className="flex flex-col items-center gap-2">
+            <motion.p 
+              className="text-[10px] font-mono tracking-[0.4em] text-emerald-500 uppercase"
+              animate={{ opacity: [0.4, 1, 0.4] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              Initializing Systems... {progress}%
+            </motion.p>
+            
+            <motion.p 
+              className="text-xs italic font-serif text-white/40 max-w-[280px] text-center leading-relaxed"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+            >
+              "Architecting the invisible backbone of the digital world."
+            </motion.p>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-12 left-12 font-mono text-[10px] text-white/10 hidden md:block">
+        SYSTEM_BOOT_SEQUENCE_v2.0.4
+      </div>
+      <div className="absolute bottom-12 right-12 font-mono text-[10px] text-white/10 hidden md:block">
+        LATENCY: 5ms // STATUS: OPTIMAL
+      </div>
     </motion.div>
   );
 };
