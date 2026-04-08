@@ -153,6 +153,12 @@ export const RESUME_DATA = {
       "description": "A backend-focused framework for building autonomous AI agents using Java and LLM integration.",
       "stack": ["Java", "Spring Boot", "LLM", "Kafka"],
       "link": "#"
+    },
+    {
+      "title": "ECommerce Web Checkout System",
+      "description": "A backend-focused Checkout System that will use Kafka for Async communication and replicate the Amazon and Flikart Checkout System",
+      "stack": ["Java", "Spring Boot", "System Design", "Desing Pattern", "Microservices", "Kafka"],
+      "link": "https://github.com/divyanshu29"
     }
   ],
   "education": [
