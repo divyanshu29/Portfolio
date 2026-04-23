@@ -136,6 +136,7 @@ export const RESUME_DATA = {
     "Tools & Workflow": ["Git", "Docker", "Jira", "Notion", "Postman"]
   },
   "certifications": [
+    { "name": "Claude Certified Functional Architect : Foundation", "url": "https://verify.skilljar.com/c/azgmyymbwyjb" },
     { "name": "Anthropic Academy Certified", "url": "https://www.linkedin.com/in/divyanshu-29/details/certifications/" },
     { "name": "Certificate of completion: Claude 101", "url": "https://www.linkedin.com/in/divyanshu-29/details/certifications/" },
     { "name": "Oracle Certified Java Programmer", "url": "https://www.linkedin.com/in/divyanshu-29/details/certifications/" },
