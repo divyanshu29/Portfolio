@@ -145,8 +145,7 @@ export const RESUME_DATA = {
     "Messaging & Data": ["Apache Kafka", "SQL", "Foundation DB", "Spring Data JPA", "XML", "HashiCorp Vault"],
     "AI & Cloud": ["Gen AI", "Claude Skills", "Anthropic Claude", "Generative AI", "LLM", "Agentic AI", "Snowflake", "Citi Velocity", "Tekton", "SonarQube"],
     "Salesforce & Analytics": ["Salesforce Marketing Cloud", "Salesforce Datorama", "Power BI", "Datorama Admin"],
-    "Tools & Workflow": ["Git", "Docker", "Jira", "Notion", "Postman"],
-    "Integration Platform": ["Dell Boomi", "Warkato", "Boomi Companion", "Workato Genie"]
+    "Integrations Tools & Workflow": ["Git", "Docker", "Jira", "Notion", "Postman","Dell Boomi", "Warkato", "Boomi Companion", "Workato Genie"]
   },
   "certifications": [
     { "name": "Claude Certified Functional Architect : Foundation", "url": "https://verify.skilljar.com/c/azgmyymbwyjb" },

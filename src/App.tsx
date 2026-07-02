@@ -312,8 +312,7 @@ export default function App() {
                   </div>
                   <div className="md:col-span-5 flex flex-col gap-6">
                     <div className="flex gap-4">
-                      <a 
-                      //  href={RESUME_DATA.basics.resumeUrl}
+                      <a
                         href="https://drive.google.com/file/d/11lxRmH-LbGSS5uQoHnMkofz9UVgs5-Ak/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
