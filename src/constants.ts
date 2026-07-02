@@ -157,7 +157,7 @@ export const RESUME_DATA = {
     { "name": "Datorama Admin Platform Intermediate", "url": "https://www.linkedin.com/in/divyanshu-29/details/certifications/" },
     { "name": "Programming Foundations with JavaScript, HTML and CSS", "url": "https://www.linkedin.com/in/divyanshu-29/details/certifications/" },
     { "name": "Prepare Data for Exploration", "url": "https://www.linkedin.com/in/divyanshu-29/details/certifications/" },
-    { "name": "Data Science Methodology", "url": "https://www.linkedin.com/in/divyanshu-29/details/certifications/" }
+    { "name": "Data Science Methodology", "url": "https://www.linkedin.com/in/divyanshu-29/details/certifications/" },
     { "name": "Warkato Integration", "url": "https://drive.google.com/drive/folders/1tYENcS2o-pf8DKVTnQojKJ7YsVzCn9rI?usp=sharing" }
   ],
   "projects": [
