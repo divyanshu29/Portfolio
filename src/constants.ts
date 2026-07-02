@@ -12,10 +12,21 @@ export const RESUME_DATA = {
   },
   "experience": [
     {
+      "company": "NeosAlpha Technologies",
+      "role": "Senior Software Engineer",
+      "dates": "June 2026 - Present",
+      "location": "Jaipur, India",
+      "bullets": [
+        "Accelerating system design while enforcing strict data privacy.  Architected an in-house, prompt-driven AI platform built with enterprise-grade data security guardrails. Designed to streamline development workflows, the platform automates complex system design lifecycles—effectively slashing manual developer overhead by 35%.",
+        "Orchestrated Workato Genie and Boomi Companion to automate Test-Driven Development (TDD) processes, maximizing connector reuse to significantly reduce engineering costs."
+      ],
+      "stack": ["Java", "Generative AI", "LLM", "Spring Boot", "Workato Genie", "Boomi Companion", "Claude CLI","Antigravity","Kimi","Amazon Bedrock","Codex"]
+    },
+    {
       "company": "Altimetrik",
       "role": "Associate Engineer - Product & Platform Engineering",
-      "dates": "January 2026 - Present",
-      "location": "Bengaluru",
+      "dates": "January 2026 - May 2026",
+      "location": "Bengaluru, India",
       "bullets": [
         "I build robust systems with Java and supercharge them with Generative AI.",
         "Constantly experimenting with the latest LLM capabilities to build future-ready apps."
@@ -26,7 +37,7 @@ export const RESUME_DATA = {
       "company": "Altimetrik",
       "role": "Associate Engineer - Product & Platform Engineering",
       "dates": "March 2025 - December 2025",
-      "location": "India",
+      "location": "Bengaluru, India",
       "client": "Citi Bank",
       "bullets": [
         "Engineered and deployed high-performance RESTful APIs for core banking microservices using Java and Spring Boot, implementing complex business logic and maker-checker security workflows.",
@@ -41,7 +52,7 @@ export const RESUME_DATA = {
       "company": "Altimetrik",
       "role": "Associate Engineer - Product & Platform Engineering",
       "dates": "November 2023 - February 2025",
-      "location": "Chennai, Tamil Nadu, India",
+      "location": "Chennai, India",
       "client": "National Payment Co-operation of India (NPCI)",
       "bullets": [
         "Designed and developed robust, scalable APIs using Java to enhance system functionality, performance, and maintainability.",
@@ -147,6 +158,7 @@ export const RESUME_DATA = {
     { "name": "Programming Foundations with JavaScript, HTML and CSS", "url": "https://www.linkedin.com/in/divyanshu-29/details/certifications/" },
     { "name": "Prepare Data for Exploration", "url": "https://www.linkedin.com/in/divyanshu-29/details/certifications/" },
     { "name": "Data Science Methodology", "url": "https://www.linkedin.com/in/divyanshu-29/details/certifications/" }
+    { "name": "Warkato Integration", "url": "https://drive.google.com/drive/folders/1tYENcS2o-pf8DKVTnQojKJ7YsVzCn9rI?usp=sharing" }
   ],
   "projects": [
     {
@@ -154,12 +166,6 @@ export const RESUME_DATA = {
       "description": "A backend-focused framework for building autonomous AI agents using Java and LLM integration.",
       "stack": ["Java", "Spring Boot", "LLM", "Kafka"],
       "link": "#"
-    },
-    {
-      "title": "ECommerce Web Checkout System",
-      "description": "A backend-focused Checkout System that will use Kafka for Async communication and replicate the Amazon and Flikart Checkout System",
-      "stack": ["Java", "Spring Boot", "System Design", "Desing Pattern", "Microservices", "Kafka"],
-      "link": "https://github.com/divyanshu29"
     }
   ],
   "education": [
