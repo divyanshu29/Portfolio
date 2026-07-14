@@ -5,7 +5,7 @@ export const RESUME_DATA = {
     "label": "Oracle Certified Java Programmer | Spring Boot Developer | Salesforce Datorama (2x) | Agentic AI Explorer",
     "email": "divyanshusharma200129@gmail.com",
     "location": "Jaipur, Rajasthan, India",
-    "resumeUrl": "https://drive.google.com/file/d/11lxRmH-LbGSS5uQoHnMkofz9UVgs5-Ak/view?usp=sharing",
+    "resumeUrl": "https://drive.google.com/file/d/1K3sff6vpCGQdX6leeRWQsWfbhg_9VcG6/view?usp=drive_link",
     "links": [
       { "label": "LinkedIn", "url": "https://www.linkedin.com/in/divyanshu-29" }
     ],
